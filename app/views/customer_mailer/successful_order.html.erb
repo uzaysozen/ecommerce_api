@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for order, <%= @customer.name %></h1>
+    <p>You have purchased following products:</p>
+    <ul>
+      <% @order.order_items.each do |order_item| %>
+        <li><%= order_item.product.name %>   /    Price: $<%= order_item.product.price * order_item.quantity %>   /    Quantity: <%= order_item.quantity %></li>
+      <% end %>
+    </ul>
+    <strong>Total: $<%= @order.total_price %></strong>
+    <p>Thanks again for purchasing from us. Have a great day!</p>
+  </body>
+</html>

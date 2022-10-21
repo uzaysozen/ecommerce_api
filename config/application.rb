@@ -39,6 +39,7 @@ module ProtelEcommerce
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use config.session_store, config.session_options
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
   end
 end
 

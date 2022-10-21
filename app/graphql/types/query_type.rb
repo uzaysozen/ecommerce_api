@@ -1,34 +1,49 @@
 module Types
   class QueryType < Types::BaseObject
-   
-    # /customers
+    # Customers
+
+    # get all customers
     field :customers, [Types::CustomerType], null: false
 
     def customers
       Customer.all
     end
 
+    # get customer with customer id
     field :customer, Types::CustomerType, null: false do
-      argument :id, ID, required: true
+      argument :customer_id, ID, required: true
     end
 
-    def customer(id:) 
-      Customer.find(id)
+    def customer(customer_id:) 
+      Customer.find(customer_id)
+    end
+    
+    # get customer's recent orders
+    field :customer_recent_orders, [Types::OrderType], null: false do
+      argument :customer_id, ID, required: true
     end
 
-    field :customer_orders, [Types::OrderType], null: false do
-      argument :id, ID, required: true
-      argument :recent, Integer, required: true
+    def customer_recent_orders(customer_id:) 
+      Customer.find(customer_id).orders.order(created_at: :desc)
     end
 
-    def customer_orders(id:, recent:) 
-      Customer.find(id).orders.first(recent)
+    # Products
+
+    # get all products
+    field :products, [Types::ProductType], null: false
+
+    def products
+      Product.all
     end
 
-    field :orders, [Types::OrderType], null: false
-
-    def orders
-      Order.all
+    # get product with product id
+    field :product, Types::ProductType, null: false do
+      argument :product_id, ID, required: true
     end
+
+    def product(product_id:) 
+      Product.find(product_id)
+    end
+
   end
 end
