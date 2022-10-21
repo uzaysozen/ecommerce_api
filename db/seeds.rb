@@ -7,8 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 puts "Seeding database..."
 priceList = Array.new(5) { |e| e = rand(11.2...76.9).round(2)}
-puts priceList
-puts priceList.sum
 productList = Array.new
 
 
