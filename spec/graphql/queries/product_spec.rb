@@ -25,9 +25,10 @@ RSpec.describe "product query" do
     end
 
     it "returns first product" do
+        product = Product.first
         query = <<~GQL
                 {
-                    product(productId:1) {
+                    product(productId:#{product.id}) {
                         id
                         name
                         price
@@ -36,6 +37,22 @@ RSpec.describe "product query" do
                 }
                 GQL
         result = ProtelEcommerceSchema.execute(query)
-        expect(result.dig("data", "product", "id")).to eq("1")
+        expect(result.dig("data", "product", "id").to_i).to eq(product.id)
+    end
+
+    it "returns last product" do
+        product = Product.last
+        query = <<~GQL
+                {
+                    product(productId:#{product.id}) {
+                        id
+                        name
+                        price
+                        units
+                    }
+                }
+                GQL
+        result = ProtelEcommerceSchema.execute(query)
+        expect(result.dig("data", "product", "id").to_i).to eq(product.id)
     end
 end

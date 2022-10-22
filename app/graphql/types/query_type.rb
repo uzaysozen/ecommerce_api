@@ -24,7 +24,7 @@ module Types
     end
 
     def customer_recent_orders(customer_id:) 
-      Customer.find(customer_id).orders.order(created_at: :desc)
+      Customer.find(customer_id).orders.order(created_at: :desc) # sort products by created_at date in descending order
     end
 
     # Products

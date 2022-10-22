@@ -7,7 +7,7 @@ class Customer < ApplicationRecord
     validates :phone_number, presence: true
     after_save :create_cart
 
-    def create_cart
+    def create_cart # create an empty cart for each customer
         Cart.create(customer_id: self[:id], total_price: 0)
     end
 end

@@ -7,9 +7,9 @@ class Mutations::RegisterCustomer < Mutations::BaseMutation
     field :response, String, null: false
 
     def resolve(name:, surname:, email:, phone_number:)
-        customer = Customer.new(name: name, surname: surname, email: email, phone_number: phone_number)
+        customer = Customer.new(name: name, surname: surname, email: email, phone_number: phone_number) # create customer
         
-        if customer.save
+        if customer.save # check if fields are correct
             return {
                 response: "Customer registered successfully."
             }

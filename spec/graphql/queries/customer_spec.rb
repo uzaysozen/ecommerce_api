@@ -25,9 +25,10 @@ RSpec.describe "customer query" do
     end
 
     it "returns first customer" do
+        customer = Customer.first
         query = <<~GQL
                 {
-                    customer(customerId:1) {
+                    customer(customerId:#{customer.id}) {
                         id
                         surname
                         email
@@ -36,13 +37,31 @@ RSpec.describe "customer query" do
                 }
                 GQL
         result = ProtelEcommerceSchema.execute(query)
-        expect(result.dig("data", "customer", "id")).to eq("1")
+        expect(result.dig("data", "customer", "id").to_i).to eq(customer.id)
+    end
+
+    it "returns last customer" do
+        customer = Customer.first
+        query = <<~GQL
+                {
+                    customer(customerId:#{customer.id}) {
+                        id
+                        surname
+                        email
+                        phoneNumber
+                    }
+                }
+                GQL
+        result = ProtelEcommerceSchema.execute(query)
+        expect(result.dig("data", "customer", "id").to_i).to eq(customer.id)
     end
 
     it "returns customer's recent orders" do
+        customer = Customer.first
+        product = Product.first
         5.times do
-            order = Customer.first.orders.create(customer_id: 1, total_price: 0)
-            order.order_items.create(order_id: 1, quantity: 3, product_id: 1)
+            order = Customer.first.orders.create(total_price: 0)
+            order.order_items.create(quantity: 3, product_id: product.id)
         end
         query = <<~GQL
                 {
