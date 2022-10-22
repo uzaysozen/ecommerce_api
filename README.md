@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Commands to run the server on docker container:
 
-Things you may want to cover:
+- docker-compose -f docker-compose.yml up --build
 
-* Ruby version
+Stop the services with `ctrl+c` and run
 
-* System dependencies
+- docker-compose run web rails db:migrate
+- docker-compose run web rails db:seed
 
-* Configuration
+Run the services again
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- docker-compose up
