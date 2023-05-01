@@ -20,7 +20,7 @@ RSpec.describe "customer query" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "customers").size).to eq(5)
     end
 
@@ -36,7 +36,7 @@ RSpec.describe "customer query" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "customer", "id").to_i).to eq(customer.id)
     end
 
@@ -52,7 +52,7 @@ RSpec.describe "customer query" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "customer", "id").to_i).to eq(customer.id)
     end
 
@@ -70,7 +70,7 @@ RSpec.describe "customer query" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "customerRecentOrders").size).to eq(5)
     end
 end

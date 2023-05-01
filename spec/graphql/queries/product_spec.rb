@@ -20,7 +20,7 @@ RSpec.describe "product query" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "products").size).to eq(10)
     end
 
@@ -36,7 +36,7 @@ RSpec.describe "product query" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "product", "id").to_i).to eq(product.id)
     end
 
@@ -52,7 +52,7 @@ RSpec.describe "product query" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "product", "id").to_i).to eq(product.id)
     end
 end

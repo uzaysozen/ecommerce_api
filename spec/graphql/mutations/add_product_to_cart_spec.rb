@@ -30,7 +30,7 @@ RSpec.describe "add product to cart" do
               }
             }
             GQL
-    result = ProtelEcommerceSchema.execute(query)
+    result = EcommerceApiSchema.execute(query)
     cart_items_response = result.dig("data", "addProductToCart", "customerCart", "cartItems")
     expect(cart_items_response.size).to eq(1)
     expect(cart_items_response[0].dig("quantity")).to eq(1)
@@ -60,8 +60,8 @@ RSpec.describe "add product to cart" do
             }
             GQL
     # add 2 times
-    ProtelEcommerceSchema.execute(query)
-    result = ProtelEcommerceSchema.execute(query)
+    EcommerceApiSchema.execute(query)
+    result = EcommerceApiSchema.execute(query)
     cart_items_response = result.dig("data", "addProductToCart", "customerCart", "cartItems")
     expect(cart_items_response.size).to eq(1)
     expect(cart_items_response[0].dig("quantity")).to eq(2)
@@ -89,7 +89,7 @@ RSpec.describe "add product to cart" do
               }
             }
             GQL
-    ProtelEcommerceSchema.execute(query)
+    EcommerceApiSchema.execute(query)
     product = Product.last
     query =<<~GQL
             mutation {
@@ -109,7 +109,7 @@ RSpec.describe "add product to cart" do
               }
             }
             GQL
-    result = ProtelEcommerceSchema.execute(query)
+    result = EcommerceApiSchema.execute(query)
     cart_items_response = result.dig("data", "addProductToCart", "customerCart", "cartItems")
     expect(cart_items_response .size).to eq(2)
     expect(cart_items_response[0].dig("quantity")).to eq(1)

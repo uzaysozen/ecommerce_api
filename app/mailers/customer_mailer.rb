@@ -1,5 +1,5 @@
 class CustomerMailer < ApplicationMailer
-    default from: 'protel.ecommerce@mail.com'
+    default from: 'ecommerceapi@mail.com'
 
     def successful_order
         @customer = params[:customer]

@@ -18,7 +18,7 @@ RSpec.describe "register customer" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "registerCustomer", "response")).to eq("Customer registered successfully.")
     end
 
@@ -32,7 +32,7 @@ RSpec.describe "register customer" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "registerCustomer", "response")).to eq("Name can't be blank")
     end
 
@@ -46,7 +46,7 @@ RSpec.describe "register customer" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "registerCustomer", "response")).to eq("Surname can't be blank")
     end
 
@@ -60,7 +60,7 @@ RSpec.describe "register customer" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "registerCustomer", "response")).to eq("Email can't be blank")
     end
 
@@ -74,7 +74,7 @@ RSpec.describe "register customer" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "registerCustomer", "response")).to eq("Phone number can't be blank")
     end
 
@@ -88,7 +88,7 @@ RSpec.describe "register customer" do
                     }
                 }
                 GQL
-        result = ProtelEcommerceSchema.execute(query)
+        result = EcommerceApiSchema.execute(query)
         expect(result.dig("data", "registerCustomer", "response")).to eq("Email is invalid")
     end
 end

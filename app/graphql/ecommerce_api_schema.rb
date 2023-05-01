@@ -1,4 +1,4 @@
-class ProtelEcommerceSchema < GraphQL::Schema
+class EcommerceApiSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 

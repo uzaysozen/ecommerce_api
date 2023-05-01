@@ -28,7 +28,7 @@ RSpec.describe "create order" do
                 }
             }
             GQL
-    result = ProtelEcommerceSchema.execute(query)
+    result = EcommerceApiSchema.execute(query)
     expect(result.dig("data", "createOrder", "response")).to eq("Your cart is empty.")
     expect(result.dig("data", "createOrder", "order")).to be(nil)
     expect(customer.orders.size).to eq(0)
@@ -57,7 +57,7 @@ RSpec.describe "create order" do
                 }
             }
             GQL
-    result = ProtelEcommerceSchema.execute(query)
+    result = EcommerceApiSchema.execute(query)
     expect(result.dig("data", "createOrder", "response")).to eq("Order created succesfully")
     expect(Product.first.units).to eq(quantity-5)
     expect(customer.orders.size).to eq(1)
@@ -89,7 +89,7 @@ RSpec.describe "create order" do
                 }
             }
             GQL
-    result = ProtelEcommerceSchema.execute(query)
+    result = EcommerceApiSchema.execute(query)
     products = Product.first(5)
     expect(result.dig("data", "createOrder", "response")).to eq("Order created succesfully")
     for i in 0...5 do
@@ -122,7 +122,7 @@ RSpec.describe "create order" do
                 }
             }
             GQL
-    result = ProtelEcommerceSchema.execute(query)
+    result = EcommerceApiSchema.execute(query)
     expect(result.dig("data", "createOrder", "response")).to eq("Sorry, we do not have stock for the quantity of the products you want. Unable to create order.")
     expect(result.dig("data", "createOrder", "order", "orderItems")).to be(nil)
     expect(Product.first.units).to eq(quantity)
